@@ -4,7 +4,6 @@ namespace kouinkouin\StreetParser;
 
 class StreetParser
 {
-
     /**
      * @param string $fullStreet
      *
@@ -14,37 +13,37 @@ class StreetParser
     {
         // Use https://www.regex101.com to debug regex :)
 
-        $regexLines = array(
-            array(
+        $regexLines = [
+            [
                 'regex'  => '/(.*)/', // basic
                 'street' => 1,
-                'number' => - 1,
-                'box'    => - 1
-            ),
-            array( // Belgian format. "," mandatory to separate the street and the number+box
-                'regex'  => '/^(.*\w)\ *\,\ *(\d+\w*)[\/\ ]*(\d*\w*)$/',
-                'street' => 1,
-                'number' => 2,
-                'box'    => 3
-            ),
-            array( // Belgian format. Without "," to separate the street and the number. Don't detect the box
-                'regex'  => '/^(.*[a-zA-Z])\ *(\d+\w*)([\/\ ]*)(\d*\w*)$/',
-                'street' => 1,
-                'number' => 2,
-                'box'    => - 1
-            ),
-            array( // Belgian format. Without "," to separate the street and the number. Don't detect the box
-                'regex'  => '/^(.*[a-zA-Z])\ *(\d+\w*)[\/\ ]+(\d+\w*)$/',
-                'street' => 1,
-                'number' => 2,
-                'box'    => 3
-            ),
-        );
+                'number' => -1,
+                'box'    => -1,
+            ],
+            [ // Belgian format. "," mandatory to separate the street and the number+box
+              'regex'  => '/^(.*\w)\ *\,\ *(\d+\w*)[\/\ ]*(\d*\w*)$/',
+              'street' => 1,
+              'number' => 2,
+              'box'    => 3,
+            ],
+            [ // Belgian format. Without "," to separate the street and the number. Don't detect the box
+              'regex'  => '/^(.*[a-zA-Z])\ *(\d+\w*)([\/\ ]*)(\d*\w*)$/',
+              'street' => 1,
+              'number' => 2,
+              'box'    => -1,
+            ],
+            [ // Belgian format. Without "," to separate the street and the number. Don't detect the box
+              'regex'  => '/^(.*[a-zA-Z])\ *(\d+\w*)[\/\ ]+(\d+\w*)$/',
+              'street' => 1,
+              'number' => 2,
+              'box'    => 3,
+            ],
+        ];
 
-        $bestResult = array('score' => - 1);
+        $bestResult = ['score' => -1];
 
         foreach ($regexLines as $regexLine) {
-            $result = array('score' => - 1);
+            $result = ['score' => -1];
 
             if (preg_match($regexLine['regex'], $fullStreet, $matches)) {
                 $result = $this->getResult($matches, $regexLine);
@@ -66,12 +65,12 @@ class StreetParser
      */
     private function getResult(array $matches, array $regexLine)
     {
-        $result = array();
+        $result = [];
         $score  = 0;
 
-        foreach (array('street', 'number', 'box') as $streetItem) {
-            if (isset( $matches[$regexLine[$streetItem]] )) {
-                $score ++;
+        foreach (['street', 'number', 'box'] as $streetItem) {
+            if (isset($matches[$regexLine[$streetItem]])) {
+                $score++;
                 $result[$streetItem] = $matches[$regexLine[$streetItem]];
             } else {
                 $result[$streetItem] = '';
