@@ -3,8 +3,9 @@
 namespace kouinkouin\StreetParser\StreetSolverTests;
 
 use kouinkouin\StreetParser\StreetParser;
+use PHPUnit\Framework\TestCase;
 
-class StreetSolverTest extends \PHPUnit_Framework_TestCase
+class StreetSolverTest extends TestCase
 {
     /**
      * @dataProvider provider_test_init_street_number()
