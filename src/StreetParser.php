@@ -37,23 +37,26 @@ class StreetParser
                 'number' => -1,
                 'box'    => -1,
             ],
-            [ // Belgian format. "," mandatory to separate the street and the number+box
-              'regex'  => '/^(.*\w)\ *\,\ *(\d+\w*)[\/\ ]*(\d*\w*)$/',
-              'street' => 1,
-              'number' => 2,
-              'box'    => 3,
+            // Belgian format. "," mandatory to separate the street and the number+box
+            [
+                'regex'  => '/^(.*\w)\ *\,\ *(\d+\w*)[\/\ ]*(\d*\w*)$/',
+                'street' => 1,
+                'number' => 2,
+                'box'    => 3,
             ],
-            [ // Belgian format. Without "," to separate the street and the number. Don't detect the box
-              'regex'  => '/^(.*[a-zA-Z])\ *(\d+\w*)([\/\ ]*)(\d*\w*)$/',
-              'street' => 1,
-              'number' => 2,
-              'box'    => -1,
+            // Belgian format. Without "," to separate the street and the number. Don't detect the box
+            [
+                'regex'  => '/^(.*[a-zA-Z])\ *(\d+\w*)([\/\ ]*)(\d*\w*)$/',
+                'street' => 1,
+                'number' => 2,
+                'box'    => -1,
             ],
-            [ // Belgian format. Without "," to separate the street and the number. Don't detect the box
-              'regex'  => '/^(.*[a-zA-Z])\ *(\d+\w*)[\/\ ]+(\d+\w*)$/',
-              'street' => 1,
-              'number' => 2,
-              'box'    => 3,
+            // Belgian format. Without "," to separate the street and the number. Don't detect the box
+            [
+                'regex'  => '/^(.*[a-zA-Z])\ *(\d+\w*)[\/\ ]+(\d+\w*)$/',
+                'street' => 1,
+                'number' => 2,
+                'box'    => 3,
             ],
         ];
     }
