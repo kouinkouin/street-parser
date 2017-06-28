@@ -11,9 +11,26 @@ class StreetParser
      */
     public function getStreetDataFromFullStreet($fullStreet)
     {
-        // Use https://www.regex101.com to debug regex :)
+        $bestResult = ['score' => -1];
 
-        $regexLines = [
+        foreach ($this->getRegexLines() as $regexLine) {
+            $result = $this->getLineResult($regexLine, $fullStreet);
+
+            if ($result['score'] > $bestResult['score']) {
+                $bestResult = $result;
+            }
+        }
+
+        return $bestResult;
+    }
+
+    /**
+     * @return array
+     */
+    private function getRegexLines()
+    {
+        // Use https://www.regex101.com to debug regex :)
+        return [
             [
                 'regex'  => '/(.*)/', // basic
                 'street' => 1,
@@ -39,22 +56,21 @@ class StreetParser
               'box'    => 3,
             ],
         ];
+    }
 
-        $bestResult = ['score' => -1];
-
-        foreach ($regexLines as $regexLine) {
-            $result = ['score' => -1];
-
-            if (preg_match($regexLine['regex'], $fullStreet, $matches)) {
-                $result = $this->getResult($matches, $regexLine);
-            }
-
-            if ($result['score'] > $bestResult['score']) {
-                $bestResult = $result;
-            }
+    /**
+     * @param array  $regexLine
+     * @param string $fullStreet
+     *
+     * @return array
+     */
+    private function getLineResult($regexLine, $fullStreet)
+    {
+        if (preg_match($regexLine['regex'], $fullStreet, $matches)) {
+            return $this->getMatchResult($matches, $regexLine);
         }
 
-        return $bestResult;
+        return ['score' => -1];
     }
 
     /**
@@ -63,7 +79,7 @@ class StreetParser
      *
      * @return array
      */
-    private function getResult(array $matches, array $regexLine)
+    private function getMatchResult(array $matches, array $regexLine)
     {
         $result = [];
         $score  = 0;
