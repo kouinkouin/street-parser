@@ -1,7 +1,7 @@
 # StreetParser  
 
-A PHP library to split an address street to street, number, box, ...
+A PHP library to split an address street to street name, number, box, ...
 
 ## Installation
 
-```composer require kouinkouin/StreetParser```
+```composer require kouinkouin/street-parser```
