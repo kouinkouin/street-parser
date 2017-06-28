@@ -18,13 +18,13 @@ class StreetSolverTest extends TestCase
     public function testGetStreetDataFromFullStreet($input_street, $expected_street, $expected_number, $expected_box)
     {
 
-        $bpost_street_solver = new StreetParser();
+        $streetParser = new StreetParser();
 
-        $output_address = $bpost_street_solver->getStreetDataFromFullStreet($input_street);
+        $street = $streetParser->getStreetDataFromFullStreet($input_street);
 
-        $this->assertSame($expected_street, $output_address['street'], 'Street');
-        $this->assertSame($expected_number, $output_address['number'], 'Number');
-        $this->assertSame($expected_box, $output_address['box'], 'Box');
+        $this->assertSame($expected_street, $street->getName(), 'Street');
+        $this->assertSame($expected_number, $street->getNumber(), 'Number');
+        $this->assertSame($expected_box, $street->getBox(), 'Box');
     }
 
     /**
