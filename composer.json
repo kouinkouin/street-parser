@@ -13,7 +13,12 @@
   ],
   "autoload": {
     "psr-4": {
-      "kouinkouin\\StreetParser\\": ""
+      "kouinkouin\\StreetParser\\": "src/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "kouinkouin\\StreetParser\\StreetSolverTests\\": "tests/classes/"
     }
   },
   "require": {
