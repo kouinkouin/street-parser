@@ -1,5 +1,5 @@
 {
-  "name": "kouinkouin/StreetParser",
+  "name": "kouinkouin/street-parser",
   "type": "library",
   "description": "A PHP library to split an address street to street, number, box, ...",
   "homepage": "https://github.com/kouinkouin/StreetParser",
