@@ -8,4 +8,21 @@ A PHP library to split an address street to street name, number, box, ...
 
 ## Installation
 
-```composer require kouinkouin/street-parser```
+```console
+$ composer require kouinkouin/street-parser
+```
+
+
+## Usage
+
+```php
+require __DIR__ . '/vendor/autoload.php';
+
+use kouinkouin\StreetParser\StreetParser;
+
+$streetParser = new StreetParser();
+$street = $streetParser->getStreetDataFromFullStreet('Rue du grand Duc, 13/B1');
+var_dump($street->getName()); // string(16) "Rue du grand Duc"
+var_dump($street->getNumber()); // string(2) "13"
+var_dump($street->getBox()); // string(2) "B1"
+```
