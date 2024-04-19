@@ -1,4 +1,7 @@
 build:
+  environment:
+    variables:
+      XDEBUG_MODE: coverage
   tests:
     override:
       -

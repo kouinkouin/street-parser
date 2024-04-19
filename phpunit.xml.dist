@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:noNamespaceSchemaLocation="http://schema.phpunit.de/6.1/phpunit.xsd"
-         backupGlobals="false"
+         xsi:noNamespaceSchemaLocation="http://schema.phpunit.de/9.6/phpunit.xsd"
          colors="true"
-         strict="true"
          bootstrap="vendor/autoload.php"
 >
     <testsuites>
@@ -12,13 +10,12 @@
         </testsuite>
     </testsuites>
 
-    <filter>
-        <whitelist processUncoveredFilesFromWhitelist="true">
+    <coverage>
+        <include>
             <directory suffix=".php">src</directory>
-        </whitelist>
-    </filter>
-
+        </include>
+    </coverage>
     <logging>
-        <log type="coverage-text" target="php://stdout" showUncoveredFiles="true"/>
+        <text outputFile="php://stdout"/>
     </logging>
 </phpunit>
